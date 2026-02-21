@@ -1,0 +1,11 @@
+    SET SERVEROUTPUT ON;
+    DECLARE
+     x CHAR(1):='&x';
+      BEGIN
+      IF x='A' OR x='E' OR x='I' OR x='O' OR x='U'
+       THEN
+        DBMS_OUTPUT.PUT_LINE(x||' is a vowel character');
+      ELSE
+        DBMS_OUTPUT.PUT_LINE(x||' is not a vowel character');
+      END IF;
+     END;

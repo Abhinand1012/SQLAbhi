@@ -1,0 +1,20 @@
+
+SQL> SET SERVEROUTPUT ON;
+SQL> DECLARE
+  2   A NUMBER:=&A;
+  3   B NUMBER:=&B;
+  4   C NUMBER;
+  5  BEGIN
+  6   C:=A+B;
+  7   DBMS_OUTPUT.PUT_LINE('SUM is  '||C);
+  8  END;
+  9  /
+Enter value for a: 2
+old   2:  A NUMBER:=&A;
+new   2:  A NUMBER:=2;
+Enter value for b: 3
+old   3:  B NUMBER:=&B;
+new   3:  B NUMBER:=3;
+SUM is  5
+
+PL/SQL procedure successfully completed.

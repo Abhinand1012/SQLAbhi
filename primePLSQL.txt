@@ -1,0 +1,24 @@
+SET SERVEROUTPUT ON;
+DECLARE
+  n NUMBER := &n;
+  i NUMBER;
+  c NUMBER := 0;
+BEGIN
+  IF n < 2 THEN
+    DBMS_OUTPUT.PUT_LINE('The number ' || n || ' is not prime');
+  ELSE
+    FOR i IN 2..n-1 LOOP
+      IF MOD(n,i) = 0 THEN
+        c := 1;
+        EXIT;
+      END IF;
+    END LOOP;
+
+    IF c = 0 THEN
+      DBMS_OUTPUT.PUT_LINE('The number ' || n || ' is prime');
+    ELSE
+      DBMS_OUTPUT.PUT_LINE('The number ' || n || ' is not prime');
+    END IF;
+  END IF;
+END;
+/
