@@ -1,0 +1,42 @@
+test> db.customers.find().sort({name:1}).pretty()
+[
+  {
+    _id: ObjectId('69c741190957f1e73211402a'),
+    name: 'Akhila',
+    city: 'kochi',
+    age: 25,
+    phone: '9043570691'
+  },
+  {
+    _id: ObjectId('69c743a00957f1e73211402e'),
+    name: 'anu',
+    city: 'kottayam',
+    age: 24,
+    phone: '9443570691'
+  },
+  {
+    _id: ObjectId('69c743a00957f1e73211402d'),
+    name: 'kannan',
+    city: 'kochi',
+    age: 29,
+    phone: '9343570691'
+  },
+  {
+    _id: ObjectId('69c743a00957f1e73211402b'),
+    name: 'kochu',
+    city: 'trivandrum',
+    age: 28,
+    phone: '9143570691'
+  }
+]
+test> db.customers.aggregate([{$group:{_id:"$city"}},{$count:"total_cities"}])
+[ { total_cities: 3 } ]
+
+test> db.customers.aggregate([{$group:{_id:"$city",total:{$sum:1}}}])
+[
+  { _id: 'trivandrum', total: 1 },
+  { _id: 'kochi', total: 2 },
+  { _id: 'kottayam', total: 1 }
+]
+test> db.customers.aggregate([{$group:{_id:"",min_age:{$min:"$age"},max_age:{$max:"$age"}}}])
+[ { _id: '', min_age: 24, max_age: 29 } ]
