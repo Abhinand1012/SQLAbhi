@@ -1,0 +1,138 @@
+test> db.createCollection("customers")
+{ ok: 1 }
+
+test> db.customers.insertOne({name:"Akhila",city:"kochi",age:25,phone:"9043570691"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('69c741190957f1e73211402a')
+}
+test> db.customers.insertMany([{name:"kochu",city:"trivandrum",age:28,phone:"9143570691"},
+|                          {name:"aswin",city:"kollam",age:21,phone:"9243570691"},
+|                          {name:"kannan",city:"kochi",age:32,phone:"9343570691"},
+|                          {name:"anu",city:"kottayam",age:24,phone:"9443570691"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('69c743a00957f1e73211402b'),
+    '1': ObjectId('69c743a00957f1e73211402c'),
+    '2': ObjectId('69c743a00957f1e73211402d'),
+    '3': ObjectId('69c743a00957f1e73211402e')
+  }
+}
+test> db.customers.find()
+[
+  {
+    _id: ObjectId('69c741190957f1e73211402a'),
+    name: 'Akhila',
+    city: 'kochi',
+    age: 25,
+    phone: '9043570691'
+  },
+  {
+    _id: ObjectId('69c743a00957f1e73211402b'),
+    name: 'kochu',
+    city: 'trivandrum',
+    age: 28,
+    phone: '9143570691'
+  },
+  {
+    _id: ObjectId('69c743a00957f1e73211402c'),
+    name: 'aswin',
+    city: 'kollam',
+    age: 21,
+    phone: '9243570691'
+  },
+  {
+    _id: ObjectId('69c743a00957f1e73211402d'),
+    name: 'kannan',
+    city: 'kochi',
+    age: 32,
+    phone: '9343570691'
+  },
+  {
+    _id: ObjectId('69c743a00957f1e73211402e'),
+    name: 'anu',
+    city: 'kottayam',
+    age: 24,
+    phone: '9443570691'
+  }
+]
+test> db.customers.find().pretty()
+[
+  {
+    _id: ObjectId('69c741190957f1e73211402a'),
+    name: 'Akhila',
+    city: 'kochi',
+    age: 25,
+    phone: '9043570691'
+  },
+  {
+    _id: ObjectId('69c743a00957f1e73211402b'),
+    name: 'kochu',
+    city: 'trivandrum',
+    age: 28,
+    phone: '9143570691'
+  },
+  {
+    _id: ObjectId('69c743a00957f1e73211402c'),
+    name: 'aswin',
+    city: 'kollam',
+    age: 21,
+    phone: '9243570691'
+  },
+  {
+    _id: ObjectId('69c743a00957f1e73211402d'),
+    name: 'kannan',
+    city: 'kochi',
+    age: 32,
+    phone: '9343570691'
+  },
+  {
+    _id: ObjectId('69c743a00957f1e73211402e'),
+    name: 'anu',
+    city: 'kottayam',
+    age: 24,
+    phone: '9443570691'
+  }
+]
+test> db.customers.updateOne({name:"kannan"},{$set:{age:29}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+test> db.customers.deleteOne({name:"aswin"})
+{ acknowledged: true, deletedCount: 1 }
+test> db.customers.find().pretty()
+[
+  {
+    _id: ObjectId('69c741190957f1e73211402a'),
+    name: 'Akhila',
+    city: 'kochi',
+    age: 25,
+    phone: '9043570691'
+  },
+  {
+    _id: ObjectId('69c743a00957f1e73211402b'),
+    name: 'kochu',
+    city: 'trivandrum',
+    age: 28,
+    phone: '9143570691'
+  },
+  {
+    _id: ObjectId('69c743a00957f1e73211402d'),
+    name: 'kannan',
+    city: 'kochi',
+    age: 29,
+    phone: '9343570691'
+  },
+  {
+    _id: ObjectId('69c743a00957f1e73211402e'),
+    name: 'anu',
+    city: 'kottayam',
+    age: 24,
+    phone: '9443570691'
+  }
+]
